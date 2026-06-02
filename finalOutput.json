@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "id": "wf_jx9yahaq",
+  "name": "Post to Slack on New Google Sheets Row",
+  "trigger": {
+    "id": "trigger-c30f81df-0107-4301-ac50-55b5d6868372",
+    "type": "trigger",
+    "app": "google_sheets",
+    "componentKey": "google_sheets-new-row-added",
+    "account": {
+      "app": "google_sheets",
+      "accountId": "apn_jEheorJ",
+      "externalUserId": "demo-user"
+    },
+    "config": {
+      "sheetID": "1DVxyok8GP7zP6yBo2a-Oyzus48-EbFTtOQ2kjjBE74U",
+      "worksheetIDs": [
+        132232496
+      ]
+    }
+  },
+  "steps": [
+    {
+      "id": "condition-8540efe4-e3a3-46f4-950a-4324b63d969e",
+      "type": "condition",
+      "expression": {
+        "code": "return steps.trigger.event.rowAsObject?.Country === 'India';",
+        "reason": "Country is India"
+      },
+      "whenTrue": [
+        "action-00ba0774-d35b-4942-ae3b-d4ee17762167"
+      ],
+      "whenFalse": [
+        "action-be598bf7-1825-4e84-82c9-ba2ba345a4bc"
+      ]
+    },
+    {
+      "id": "action-be598bf7-1825-4e84-82c9-ba2ba345a4bc",
+      "type": "action",
+      "app": "slack",
+      "componentKey": "slack-send-message",
+      "account": {
+        "app": "slack",
+        "accountId": "apn_MGhdMbp",
+        "externalUserId": "demo-user"
+      },
+      "config": {
+        "channelType": "Channels",
+        "conversation": "C0B7J54HFFC",
+        "text": "Test"
+      }
+    },
+    {
+      "id": "action-00ba0774-d35b-4942-ae3b-d4ee17762167",
+      "type": "action",
+      "app": "slack",
+      "componentKey": "slack-send-message",
+      "account": {
+        "app": "slack",
+        "accountId": "apn_MGhdMbp",
+        "externalUserId": "demo-user"
+      },
+      "config": {
+        "channelType": "Channels",
+        "conversation": "C0B8CDHRHR6",
+        "text": "erty"
+      }
+    }
+  ],
+  "finalized": true
+}
